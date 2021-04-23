@@ -1,68 +1,74 @@
-function Client(count, movies, actors, genres,privat, name) {
-  this.count = count
-  this.movies = movies
-  this.actors = actors
-  this.genres = genres
-  this.privat = privat
-  this.name =  name
+class Client {
+  constructor(count, movies, actors, genres,privat, name) {
+    this.count = count
+    this.movies = movies
+    this.actors = actors
+    this.genres = genres
+    this.privat = privat
+    this.name =  name
+  }
+  sayName(){
+    return `My name is ${this.name}`
+  }
+  quize(){
+    for (let i = 1; i <= 2; i++) {
+      let last = prompt("Последний ваш фильм")
+      let mark = prompt("Ваша оценка")
+      if (last === "" || mark === "" || last.length>50 || last === null || mark === null) {
+        i--
+      }
+      else {
+        this.movies[last] = mark
+      }
+    }
+    return this.movies
+  }
+  check(){
+    if (this.count<10){
+      alert("Too low")
+    }
+    else if (this.count > 10 && this.count <30) {
+      alert("normal")
+    }
+    else if (this.count > 30) {
+      alert("too much")
+    }
+    else {
+      alert("smt strange")
+    }
+  }
+  priv(){
+    if (this.privat === false) {
+      this.privat = true
+      console.log(this);
+    }
+
+  }
+  writeYourGenres(){
+    for (let i = 0; i < 3; i++) {
+      let favFilm = +prompt("Your favority film is ")
+      if (favFilm === ""|| isNaN(favFilm)=== true || favFilm < 0 || favFilm === 0) {
+        i--
+      }
+      else {
+        this.genres.push(favFilm)
+      }
+
+    }
+      this.genres.forEach((item,i=1) => {
+          console.log(`Любимый жанр # ${++i}- это ${item}`);
+      });
+
+
+  }
+
 }
+
 
 let me = new Client(+prompt("Сколько фильмов вы уже посмотрели?"),{},{},[],false, prompt("Ваше имя"))
 let i = new Client(+prompt("Сколько фильмов вы уже посмотрели?"),{},{},[],false, prompt("Ваше имя"))
 
-Client.prototype.sayName = function () {
-  return `My name is ${this.name}`
-};
-Client.prototype.quize = function (){
-  for (let i = 1; i <= 2; i++) {
-    let last = prompt("Последний ваш фильм")
-    let mark = prompt("Ваша оценка")
-    if (last === "" || mark === "" || last.length>50 || last === null || mark === null) {
-      i--
-    }
-    else {
-      this.movies[last] = mark
-    }
-  }
-  return this.movies
-}
-Client.prototype.check = function () {
-  if (this.count<10){
-    alert("Too low")
-  }
-  else if (this.count > 10 && this.count <30) {
-    alert("normal")
-  }
-  else if (this.count > 30) {
-    alert("too much")
-  }
-  else {
-    alert("smt strange")
-  }
-}
 
-Client.prototype.priv = function () {
-  if (this.privat === false) {
-    console.log(this);
-  }
-  else {
-    console.log("true");
-  }
-}
-
-Client.prototype.writeYourGenres = function () {
-  for (let i = 0; i < 3; i++) {
-    let favFilm = +prompt("Your favority film is ")
-    if (favFilm === ""|| isNaN(favFilm)=== true || favFilm < 0 || favFilm === 0) {
-      i--
-    }
-    else {
-      this.genres.push(favFilm)
-    }
-
-  }
-  return this.genres
-}
 
 // let last = prompt("Последний ваш фильм")
 // let mark = prompt("Ваша оценка")
